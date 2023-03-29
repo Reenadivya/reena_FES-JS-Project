@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/owl.carousel.min.css" />
+    <link rel="stylesheet" href="./css/owl.theme.default.min.css" />
+    <link rel="stylesheet" href="./css/styles.css" />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+      defer></script>
+    <script src="./js/owl.carousel.min.js" defer></script>
+    <script
+      src="https://kit.fontawesome.com/116ba3a803.js"
+      crossorigin="anonymous"
+      defer></script>
+    <script src="./js/index.js" defer></script>
+    <title>Movie App</title>
+  </head>
+  <body>
+    <header class="container">
+      <nav class="row">
+        <div class="logo">
+          <figure>
+            <a href="/">
+              <img
+                class="logo__img"
+                src="./assests/door movie (2).svg"
+                alt="" />
+            </a>
+          </figure>
+        </div>
+        <ul class="right__nav nav__links">
+          <li class="nav__link link__hover">
+            <a href="">Home</a>
+          </li>
+          <li class="nav__link link__hover">
+            <a href="#landing__page">Search</a>
+          </li>
+
+          <li class="nav__link link__hover">
+            <a href="./about.html">About</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <section id="landing__page">
+      <div class="container">
+        <h1 class="landing__page--header">
+          Discover the magic of the big screen with our movie collection
+        </h1>
+
+        <form action="\" class="form">
+          <input type="text" id="search" />
+          <button class="search-button">Submit</button>
+          <select id="filter" onchange="sortMovies()">
+            <option value="" default disabled selected>Sort by rating</option>
+            <option value="low-to-high">Lowest to highest</option>
+            <option value="high-to-low">Highest to lowest</option>
+          </select>
+        </form>
+      </div>
+    </section>
+    <main id="main">
+      <i class="fa-solid fa-circle-notch movies__loading-spinner"></i>
+      <section id="featured__movies">
+        <div class="container featured__movies-container">
+          <h2 class="featured__movies-header">Featured Movies</h2>
+          <i class="fa-solid fa-circle-notch movies__loading-spinner"></i>
+          <div class="movie__list owl-carousel"></div>
+          <div class="custom-nav"></div>
+        </div>
+      </section>
+      <section id="movie__categories">
+        <div class="container">
+          <h2 class="categories-header">Categories</h2>
+          <div class="category__list">
+            <div class="category__item" id="28">
+              <h3 class="category-title">Action</h3>
+              <div class="category__item-posters">
+                <i class="fa-solid fa-circle-notch movies__loading-spinner"></i>
+              </div>
+            </div>
+            <div class="category__item" id="35">
+              <h3 class="category-title">Comedy</h3>
+              <div class="category__item-posters">
+                <i class="fa-solid fa-circle-notch movies__loading-spinner"></i>
+              </div>
+            </div>
+            <div class="category__item" id="18">
+              <h3 class="category-title">Drama</h3>
+              <div class="category__item-posters">
+                <i class="fa-solid fa-circle-notch movies__loading-spinner"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+  <footer>
+    <div class="footer__container">
+      <div class="footer__content">
+        <div class="footer__left">
+          <p class="footer__left-text">&copy; 2023 Movie App</p>
+        </div>
+        <div class="footer__right">
+          <ul class="social__links">
+            <li class="social__link">
+              <a
+                href="https://www.linkedin.com/in/reena-divya/"
+                target="_blank">
+                <i class="fab fa-linkedin"></i>
+              </a>
+            </li>
+            <li class="social__link">
+              <a href="https://github.com/Reenadivya" target="_blank">
+                <i class="fab fa-github"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+</html>
