@@ -6,8 +6,6 @@ const TRENDING_MOVIES_URL = `https://api.themoviedb.org/3/trending/all/day?api_k
 const SEARCH_URL = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=`;
 const POSTER_PATH = "https://image.tmdb.org/t/p/w500";
 
-const movieList = $(".movie__list");
-
 const form = document.querySelector(".form");
 const searchButton = document.querySelector(".search-button");
 const searchInput = document.getElementById("search");
@@ -16,6 +14,11 @@ const filterSelect = document.getElementById("filter");
 const featuredMovies = document.querySelector(".featured__movies-container");
 const movieCategories = document.querySelector(".category__list");
 const movieCategoriesHeader = document.querySelector(".categories-header");
+const movieList = document.querySelector(".movie__list");
+const hamburger = document.querySelector(".hamburger");
+const blackScreen = document.querySelector(".black-screen");
+const mobileNav = document.querySelector(".mobile-nav");
+const closeBtn = document.querySelector(".close");
 
 async function movieData(url) {
   try {
@@ -33,11 +36,15 @@ async function movieData(url) {
             ? movie.release_date
             : movie.first_air_date;
           const rating = movie.vote_average.toFixed(1);
+          const imgPath =
+            POSTER_PATH + movie.poster_path
+              ? POSTER_PATH + movie.poster_path
+              : `<p>Sorry we couldn't find a poster for this image!</p>`;
 
           return `
           <div class="movie__item">
             <img class="movie__item-img" src="${
-              POSTER_PATH + movie.poster_path
+              POSTER_PATH + imgPath
             }" alt="" />
             <div class="movie__item-description">
               <h3 class="movie-title">${title}</h3>
@@ -49,30 +56,8 @@ async function movieData(url) {
         })
         .join("");
 
-      movieList.html(markup);
+      movieList.innerHTML = markup;
       featuredMovies.classList.remove("featured__movies--loading");
-
-      movieList.owlCarousel({
-        loop: true,
-        margin: 5,
-        nav: true,
-        dots: false,
-        navText: [
-          '<button class="carousel-btn carousel-btn--left"><i class="fas fa-chevron-left"></i></button>',
-          '<button class="carousel-btn carousel-btn--right"><i class="fas fa-chevron-right"></i></button>',
-        ],
-        responsive: {
-          0: {
-            items: 1,
-          },
-          768: {
-            items: 2,
-          },
-          1024: {
-            items: 3,
-          },
-        },
-      });
     }, 300);
   } catch (err) {
     console.log(err);
@@ -200,6 +185,7 @@ function sortMovies() {
 form.addEventListener("submit", (e) => {
   e.preventDefault();
   const searchTerm = searchInput.value.trim();
+  console.log(searchTerm);
   if (searchTerm) {
     searchMovies(SEARCH_URL + searchTerm);
     searchInput.value = "";
@@ -207,8 +193,21 @@ form.addEventListener("submit", (e) => {
 });
 
 searchButton.addEventListener("click", () => {
-  // Your search logic here
   main.scrollIntoView({ behavior: "smooth" });
+});
+
+hamburger.addEventListener("click", () => {
+  document.body.classList.toggle("noscroll");
+  hamburger.classList.toggle("open");
+  blackScreen.classList.toggle("show");
+  mobileNav.classList.toggle("show");
+});
+
+closeBtn.addEventListener("click", () => {
+  document.body.classList.remove("noscroll");
+  hamburger.classList.remove("open");
+  blackScreen.classList.remove("show");
+  mobileNav.classList.remove("show");
 });
 
 window.onload = () => {

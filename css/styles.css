@@ -31,6 +31,71 @@ nav {
   margin: 0 auto;
   padding: 8px 20px;
 }
+/* Hamburger menu */
+.hamburger {
+  display: none;
+  cursor: pointer;
+  background: none;
+}
+
+/* Mobile nav */
+.mobile-nav {
+  display: none;
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 50%;
+  height: 100%;
+  background-color: #2b2b2b;
+  z-index: 100;
+  overflow-y: scroll;
+  padding: 2rem;
+}
+
+.mobile-nav__links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.mobile-nav__links li {
+  margin-bottom: 1rem;
+}
+
+.mobile-nav__links li:last-child {
+  margin-bottom: 0;
+}
+
+.mobile-nav__links a {
+  display: block;
+  font-size: 2rem;
+  text-decoration: none;
+  color: black;
+  color: #e5e5e5;
+}
+
+.close {
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 1.5rem;
+  cursor: pointer;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+/* Black screen */
+.black-screen {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.503);
+  z-index: 99;
+}
 
 a {
   text-decoration: none;
@@ -58,6 +123,20 @@ li {
   padding: 8px;
   font-size: 16px;
   font-weight: bold;
+}
+
+.navbar__toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: #fff;
+  cursor: pointer;
+  padding: 1rem;
+}
+
+.navbar__toggle i {
+  margin-right: 0.5rem;
 }
 
 .link__hover {
@@ -147,7 +226,7 @@ button {
 /* FEATURED MOVIES*/
 
 #featured__movies {
-  height: 600px;
+  height: 450px;
 }
 
 .featured__movies-header {
@@ -158,11 +237,10 @@ button {
 
 .movie__list {
   display: flex !important;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
-  align-items: center;
-
-  margin-bottom: 40px;
+  align-items: start;
+  width: 100%;
 }
 
 .movie__item {
@@ -175,17 +253,8 @@ button {
 }
 
 .movie__item-img {
-  width: 40%;
+  width: 70%;
   border-radius: 8px;
-}
-
-.owl-carousel .movie__item-img {
-  max-width: 300px;
-  height: auto;
-}
-
-.owl-item {
-  margin-right: 20px;
 }
 
 .carousel-btn {
@@ -516,8 +585,9 @@ footer {
   display: none;
 }
 
-/* For screens smaller than 768px */
-/* @media (max-width: 767px) {
+/* For screens smaller than 768px  */
+
+@media (max-width: 768px) {
   nav {
     height: auto;
   }
@@ -556,18 +626,30 @@ footer {
   #filter {
     margin-top: 8px;
   }
+  #featured__movies {
+    height: 350px;
+  }
 
   .movie__item {
     text-align: center !important;
   }
 
-  .movie__item-img {
+  /* .movie__item-img {
     width: 100%;
-  }
+  } */
 
   .movie__item-description {
     width: 100%;
-    padding: 8px 0;
+    padding: 8px 8px;
+  }
+  .movie__item-description p {
+    font-size: 12px;
+    line-height: 16px;
+  }
+
+  .movie-title {
+    font-size: 12px;
+    line-height: 16px;
   }
 
   .category-title {
@@ -580,6 +662,10 @@ footer {
     padding: 0;
     border-radius: 8px;
     width: 70%;
+  }
+
+  .posters__container:not(:first-child) {
+    display: none;
   }
 
   .categories__poster-title {
@@ -614,4 +700,82 @@ footer {
   .movie {
     width: 100%;
   }
-} */
+
+  footer {
+    overflow-y: hidden;
+  }
+}
+
+@media (max-width: 678px) {
+  #featured__movies {
+    height: 880px;
+  }
+  /* Hamburger menu */
+  .hamburger {
+    display: block;
+  }
+
+  /* Hide desktop nav */
+  .nav__links {
+    display: none;
+  }
+
+  /* Show mobile nav */
+  .mobile-nav {
+    display: block;
+  }
+
+  /* Show black screen */
+  .black-screen {
+    display: block;
+  }
+
+  /* Styles for the hamburger menu when open */
+  .hamburger.open .line-1 {
+    transform: translateY(6px) rotate(45deg);
+  }
+
+  .hamburger.open .line-2 {
+    opacity: 0;
+  }
+
+  .hamburger.open .line-3 {
+    transform: translateY(-6px) rotate(-45deg);
+  }
+
+  /* Styles for the black screen overlay when shown */
+  .black-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+  }
+
+  .black-screen.show {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  /* Styles for preventing scroll when mobile nav is open */
+  .noscroll {
+    overflow: hidden;
+  }
+
+  .movie__item-description p {
+    display: none;
+  }
+
+  .movie__list {
+    flex-wrap: wrap;
+  }
+
+  .movie__item {
+    width: 50%;
+  }
+}
